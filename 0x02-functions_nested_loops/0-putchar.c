@@ -1,13 +1,21 @@
-#include"main.h"
-
+#include "main.h"
+/**
+* main - Entry point
+* Decription: prints _putchar followed by a new line.
+*
+* Return: zero (0)
+*/
 int main(void)
 {
-	char str[] = "_putchar";
-	int ch;
+-putchar("_");
+-putchar("p");
+-putchar("u");
+-putchar("t");
+-putchar("c");
+-putchar("h");
+-putchar("a");
+-putchar("r");
+-putchar("\n");
 
-	for (ch = 'a'; ch<= 'z'; ++ch)
-		_putchar(ch);
-	_putchar('\n');
-
-	return (0);
+return (0);
 }

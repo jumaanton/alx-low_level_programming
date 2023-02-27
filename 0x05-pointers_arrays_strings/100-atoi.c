@@ -1,17 +1,28 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - check the code for ALX School students.
+ * _atoi - convert a string to an integer.
+ * @s: the string to be comverted.
  *
- * Return: Always 0.
-*/
+ *Return: The integer value of the comverted string.
+ */
 
-int main(void)
+int _atoi(char *s)
 {
-	char s[10] = "Holberton";
+	int sign = 1;
+	unsigned int num = 0;
 
-	printf("%s\n", s);
-	rev_string(s);
-	printf("%s\n", s);
-	return (0);
+	do {
+
+		if (*s == '-')
+			sign *= -1;
+
+		else if (*s >= '0' && *s <= '9')
+			num = (num * 10) + (*s - '0');
+
+		else if (num > 0)
+			break;
+	} while (*s++);
+
+	return (num * sign);
 }

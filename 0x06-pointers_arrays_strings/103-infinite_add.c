@@ -1,79 +1,47 @@
 #include "holberton.h"
-
 /**
- * rev_string - reverse array
- * @n: integer params
- * Return: 0
+ * infinite_add - adds values of two strings together
+ * @n1: first string of integers
+ * @n2: second string of ints
+ * @r: result string
+ * @size_r: size of result string
+ *
+ * Return: void
  */
-
-void rev_string(char *n)
-{
-	int i = 0;
-	int j = 0;
-	char temp;
-
-	while (*(n + i) != '\0')
-	{
-		i++;
-	}
-	i--;
-
-	for (j = 0; j < i; j++, i--)
-	{
-		temp = *(n + j);
-		*(n + j) = *(n + i);
-		*(n + i) = temp;
-	}
-}
-
-/**
- * infinite_add - add 2 numbers together
- * @n1: text representation of 1st number to add
- * @n2: text representation of 2nd number to add
- * @r: pointer to buffer
- * @size_r: buffer size
- * Return: pointer to calling function
- */
-
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int overflow = 0, i = 0, j = 0, digits = 0;
-	int val1 = 0, val2 = 0, temp_tot = 0;
+	int len1 = 0, num1 = 0, sum1 = 0;
+	int len2 = 0, num2 = 0, sum2 = 0;
+	int num = 0, sum = 0, i, j;
+	char temp, n1c[1000], n2c[1000];
 
-	while (*(n1 + i) != '\0')
-		i++;
-	while (*(n2 + j) != '\0')
-		j++;
-	i--;
-	j--;
-	if (j >= size_r || i >= size_r)
+	while (n1[len1] != '\0')
+		len1++;
+	while (n2[len2] != '\0')
+		len2++;
+	if (len1 >= size_r || len2 >= size_r)
 		return (0);
-	while (j >= 0 || i >= 0 || overflow == 1)
+	for (j = 0, i = len1 - 1; j < len1; j++, i--)
+		n1c[j] = n1[i];
+	n1c[j] = '\0';
+	for (j = 0, i = len2 - 1; j < len2; j++, i--)
+		n2c[j] = n2[i];
+	n2c[j] = '\0';
+	while (num < size_r - 1)
 	{
-		if (i < 0)
-			val1 = 0;
-		else
-			val1 = *(n1 + i) - '0';
-		if (j < 0)
-			val2 = 0;
-		else
-			val2 = *(n2 + j) - '0';
-		temp_tot = val1 + val2 + overflow;
-		if (temp_tot >= 10)
-			overflow = 1;
-		else
-			overflow = 0;
-		if (digits >= (size_r - 1))
-			return (0);
-		*(r + digits) = (temp_tot % 10) + '0';
-		digits++;
-		j--;
-		i--;
+		if (num1 >= len1 && num2 >= len2 && sum == 0)
+			break;
+		sum1 = num1 < len1 ? n1c[num1] - '0' : 0;
+		sum2 = num2 < len2 ? n2c[num2] - '0' : 0;
+		sum += (sum1 + sum2);
+		r[num] = sum % 10 + '0';
+		sum = sum < 10 ? 0 : 1;
+		num++, num1++, num2++;
 	}
-	if (digits == size_r)
+	if (sum != 0)
 		return (0);
-	*(r + digits) = '\0';
-	rev_string(r);
+	r[num] = '\0';
+	for (j = 0, i = --num; j < num / 2; j++, i--)
+		temp = r[j], r[j] = r[i], r[i] = temp;
 	return (r);
 }
-

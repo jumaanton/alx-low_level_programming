@@ -1,3 +1,8 @@
+/*
+ * Auth: Brennan D Baraban
+ * File: 0-binary_to_uint.c
+ */
+
 #include "holberton.h"
 
 /**
